@@ -1,0 +1,5 @@
+ofr@hki:~/hki-devops-docker/part1$ sudo docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+2337baa00a7f   nginx     "/docker-entrypoint.…"   32 seconds ago   Exited (0) 5 seconds ago             vibrant_elbakyan
+e8c519501fca   nginx     "/docker-entrypoint.…"   33 seconds ago   Up 33 seconds              80/tcp    keen_rubin
+dd3c3b258b39   nginx     "/docker-entrypoint.…"   37 seconds ago   Exited (0) 5 seconds ago             eloquent_lederberg
