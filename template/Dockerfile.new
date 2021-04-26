@@ -1,0 +1,5 @@
+FROM <image>:<tag>
+
+RUN <install some dependencies>
+
+CMD <command that is executed on `docker container run`>
