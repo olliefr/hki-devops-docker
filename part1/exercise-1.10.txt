@@ -1,0 +1,14 @@
+ofr@hki:~/hki-devops-docker/part1$ sudo docker build -t web-server -f ./exercise-1.7.Dockerfile .
+Sending build context to Docker daemon  292.4kB
+Step 1/2 : FROM devopsdockeruh/simple-web-service:alpine
+ ---> fd312adc88e0
+Step 2/2 : CMD server
+ ---> Using cache
+ ---> 0a2e0f108bbd
+Successfully built 0a2e0f108bbd
+Successfully tagged web-server:latest
+ofr@hki:~/hki-devops-docker/part1$ sudo docker container run -d -it --rm -p 8080:8080 web-server:latest
+4716b664f066dc1a823d40233caf793bb26838a597324209a7f3b349af6b7333
+ofr@hki:~/hki-devops-docker/part1$ curl http://35.228.160.84:8080/
+{"message":"You connected to the following path: /","path":"/"}ofr@hki:~/hki-devops-docker/part1$
+ofr@hki:~/hki-devops-docker/part1$
