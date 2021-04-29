@@ -1,0 +1,12 @@
+ofr@hki:~/hki-devops-docker/scratchspace$ ls
+Dockerfile  Dockerfile.youtube-dl
+ofr@hki:~/hki-devops-docker/scratchspace$ touch text.log
+ofr@hki:~/hki-devops-docker/scratchspace$ sudo docker run --rm -it -v "$(pwd)/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service
+Starting log output
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+^Cofr@hki:~/hki-devops-docker/scratchspace$
+ofr@hki:~/hki-devops-docker/scratchspace$ cat text.log
+2021-04-29 02:12:42 +0000 UTC
+2021-04-29 02:12:44 +0000 UTC
+ofr@hki:~/hki-devops-docker/scratchspace$
