@@ -1,0 +1,46 @@
+ofr@hki:~/material-applications/example-backend$ sudo docker image build -t example-backend -f Dockerfile .
+Sending build context to Docker daemon  41.11kB
+Step 1/9 : FROM golang:1.16
+1.16: Pulling from library/golang
+bd8f6a7501cc: Pull complete
+44718e6d535d: Pull complete
+efe9738af0cb: Pull complete
+f37aabde37b8: Pull complete
+c4c446e03742: Pull complete
+77ce91079a9a: Pull complete
+62b51a704e67: Pull complete
+Digest: sha256:f7d3519759ba6988a2b73b5874b17c5958ac7d0aa48a8b1d84d66ef25fa345f1
+Status: Downloaded newer image for golang:1.16
+ ---> d5dc529b0ee7
+Step 2/9 : WORKDIR /myapp
+ ---> Running in c8d253a96a15
+Removing intermediate container c8d253a96a15
+ ---> e81d18be19ab
+Step 3/9 : COPY go.mod .
+ ---> 6909950296bd
+Step 4/9 : COPY go.sum .
+ ---> fcad364b409a
+Step 5/9 : RUN go mod download
+ ---> Running in f5d128bddf9c
+Removing intermediate container f5d128bddf9c
+ ---> 1ba34906f2aa
+Step 6/9 : COPY . .
+ ---> 2403aca1f717
+Step 7/9 : RUN go build
+ ---> Running in 76a599b99eae
+Removing intermediate container 76a599b99eae
+ ---> 9bb1509557e8
+Step 8/9 : EXPOSE 8080
+ ---> Running in 2fa0bd398be8
+Removing intermediate container 2fa0bd398be8
+ ---> 867fe0d47a19
+Step 9/9 : ENTRYPOINT ["/myapp/server"]
+ ---> Running in e2efd1a85c05
+Removing intermediate container e2efd1a85c05
+ ---> 2417af0d0be1
+Successfully built 2417af0d0be1
+Successfully tagged example-backend:latest
+ofr@hki:~/material-applications/example-backend$ sudo docker container run -d -it --rm -p 8080:8080 example-backend
+4df15cb72191059103b0dfa3486840c29cdf97b592f124e612e7464e248268da
+ofr@hki:~/material-applications/example-backend$ curl http://localhost:8080/ping
+pongofr@hki:~/material-applications/example-backend$
