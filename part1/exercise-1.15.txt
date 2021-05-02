@@ -1,0 +1,77 @@
+ofr@hki:~/temposaurus$ sudo docker build -t olliefr/temposaurus -f Dockerfile .
+Sending build context to Docker daemon  7.071MB
+Step 1/12 : FROM golang:1.16-buster AS build
+1.16-buster: Pulling from library/golang
+bd8f6a7501cc: Pull complete
+44718e6d535d: Pull complete
+efe9738af0cb: Pull complete
+f37aabde37b8: Pull complete
+c4c446e03742: Pull complete
+77ce91079a9a: Pull complete
+62b51a704e67: Pull complete
+Digest: sha256:9d64369fd3c633df71d7465d67d43f63bb31192193e671742fa1c26ebc3a6210
+Status: Downloaded newer image for golang:1.16-buster
+ ---> d5dc529b0ee7
+Step 2/12 : WORKDIR /app
+ ---> Running in f16764d79c9e
+Removing intermediate container f16764d79c9e
+ ---> 6501cb7d3f9e
+Step 3/12 : COPY go.mod .
+ ---> 35545b0852a3
+Step 4/12 : COPY go.sum .
+ ---> f162bbbe646a
+Step 5/12 : RUN go mod download
+ ---> Running in 0262b724dab6
+Removing intermediate container 0262b724dab6
+ ---> 604e0101bbc7
+Step 6/12 : COPY *.go .
+ ---> f060cea9df7c
+Step 7/12 : RUN go build -o /app/temposaurus
+ ---> Running in c4533ad2c5c7
+Removing intermediate container c4533ad2c5c7
+ ---> c01dbc9306ae
+Step 8/12 : FROM gcr.io/distroless/base-debian10
+latest: Pulling from distroless/base-debian10
+5dea5ec2316d: Pull complete
+bb771d6dc9a1: Pull complete
+Digest: sha256:6ec6da1888b18dd971802c2a58a76a7702902b4c9c1be28f38e75e871cedc2df
+Status: Downloaded newer image for gcr.io/distroless/base-debian10:latest
+ ---> a4cf6da932ac
+Step 9/12 : WORKDIR /app
+ ---> Running in 9708d7c31c85
+Removing intermediate container 9708d7c31c85
+ ---> 1ed9714784a1
+Step 10/12 : COPY --from=build /app/temposaurus .
+ ---> d0f08b382103
+Step 11/12 : USER nonroot:nonroot
+ ---> Running in a1fff68ebadd
+Removing intermediate container a1fff68ebadd
+ ---> 8fcc26500f10
+Step 12/12 : ENTRYPOINT ["/app/temposaurus"]
+ ---> Running in 0b88dfdabb09
+Removing intermediate container 0b88dfdabb09
+ ---> 82b5d56045c6
+Successfully built 82b5d56045c6
+Successfully tagged olliefr/temposaurus:latest
+ofr@hki:~/temposaurus$
+ofr@hki:~/temposaurus$ sudo docker container run --rm -it -e JIRA_EMAIL=ofrolovs@verifa.io -e ATLASSIAN_TOKEN=$(cat ~/.tokens/atlassian) -e TEMPO_TOKEN=$(cat ~/.tokens/tempo) -e DATE_FROM=2021-04-12 olliefr/temposaurus
+2021/05/02 00:42:04 Temposaurus starting...
+2021/05/02 00:42:04 Acquiring Atlassian User ID...
+2021/05/02 00:42:05 acquiring the list of time-sheet start/end dates...
+From         To           Required     Approved     Overtime
+2021-04-12   2021-04-18   37h30m0s     39h15m0s     1h45m0s
+2021-04-19   2021-04-25   37h30m0s     36h0m0s      -1h30m0s
+2021-04-26   2021-05-02   37h30m0s     41h0m0s      3h30m0s
+
+Total: 3h45m0s
+ofr@hki:~/temposaurus$
+ofr@hki:~/temposaurus$ sudo docker push olliefr/temposaurus
+Using default tag: latest
+The push refers to repository [docker.io/olliefr/temposaurus]
+d0b0475cb064: Pushed
+b785035ecaa7: Pushed
+5d09c2db1d76: Pushed
+417cb9b79ade: Pushed
+latest: digest: sha256:e493485f5551689004abbaef32c0f50e2b7060d2851408f527bfea2a7f8cfd58 size: 1156
+ofr@hki:~/temposaurus$
+
