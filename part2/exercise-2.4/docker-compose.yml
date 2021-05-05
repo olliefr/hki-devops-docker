@@ -1,0 +1,31 @@
+version: '3.5'
+
+# The frontend-compose.Dockerfile and backend-compose.Dockerfile
+# in this repo are hard linked to the files of the same name 
+# in the material-applications repo, so that the builds can be
+# run within the correct context while all Docker and Compose files
+# files are kept within this repository for marking purposes.
+
+services:
+  frontend:
+    image: frontend
+    build: 
+      context: ../../../material-applications/example-frontend/
+      dockerfile: frontend-compose.Dockerfile
+      args:
+        - REACT_APP_BACKEND_URL=http://35.228.160.84:8000
+    ports:
+      - 5000:5000
+  backend:
+    image: backend
+    environment:
+      - REDIS_HOST=cache
+    build:
+      context: ../../../material-applications/example-backend/
+      dockerfile: backend-compose.Dockerfile
+      args:
+        - REQUEST_ORIGIN=http://35.228.160.84:5000
+    ports:
+      - 8000:8000
+  cache:
+    image: redis
