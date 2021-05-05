@@ -21,6 +21,8 @@ docker-compose up --build --scale compute=10
 
 The complete log is in the [exercise-2.5.log](exercise-2.5.log) file.
 
+![Screenshot of exercise 2.5 result](exercise-2.5.png)
+
 ## Hmmm...
 
 ❓ For some reason, although the syntax appear to be correct, the following command did not have the desired effect:
