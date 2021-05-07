@@ -1,0 +1,33 @@
+version: '3.5'
+
+# This Docker Compose file is hard-linked to material-applications/ directory.
+# Thus, the build contexts are relative to that directory.
+# The Dockerfiles are hard-linked into their correspondent subdirectories.
+
+services:
+  db:
+    image: postgres:13.2
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mamkatvoya
+  backend:
+    image: backend
+    build:
+      context: example-backend
+      dockerfile: backend-compose.Dockerfile
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: mamkatvoya
+    ports:
+      - 8000:8000
+
+  frontend:
+    image: frontend
+    build:
+      context: example-frontend
+      dockerfile: frontend-compose.Dockerfile
+    environment:
+      REACT_APP_BACKEND_URL: http://35.228.160.84:8000
+    ports:
+      - 5000:5000
