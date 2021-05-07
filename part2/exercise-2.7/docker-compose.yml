@@ -1,0 +1,46 @@
+version: '3.8'
+
+# This example was run on local Docker enginer instance,
+# because the frontend application has localhost value
+# hard-coded and I did not want to spend time fiddling
+# with ncat and CORS ;-)
+
+# This docker-compose.yml file is hard-linked into 
+# the machine-learning-applications/ directory,
+# where the repos for all three services reside.
+
+services:
+  frontend:
+    image: frontend
+    build:
+      context: ml-kurkkumopo-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+  backend:
+    image: backend
+    build:
+      context: ml-kurkkumopo-backend
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - training
+    volumes:
+      - model:/src/model:ro
+  training:
+    image: training
+    build:
+      context: ml-kurkkumopo-training
+      dockerfile: Dockerfile
+    volumes:
+      - imgs:/src/imgs
+      - data:/src/data
+      - model:/src/model
+
+volumes:
+  imgs:
+  data:
+  model:
