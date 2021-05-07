@@ -1,0 +1,45 @@
+version: '3.5'
+
+# The frontend-compose.Dockerfile and backend-compose.Dockerfile
+# in this repo are hard linked to the files of the same name 
+# in the material-applications repo, so that the builds can be
+# run within the correct context while all Docker and Compose files
+# files are kept within this repository for marking purposes.
+
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 80:80
+  frontend:
+    image: frontend
+    build: 
+      context: ../../../material-applications/example-frontend/
+      dockerfile: frontend.Dockerfile
+  backend:
+    image: backend
+    environment:
+      REDIS_HOST: cache
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: mamkatvoya
+    build:
+      context: ../../../material-applications/example-backend/
+      dockerfile: backend.Dockerfile
+    depends_on:
+      - db
+  db:
+    image: postgres:13.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mamkatvoya
+    volumes:
+      - pgdata
+    restart: always
+  cache:
+    image: redis
+
+volumes:
+  pgdata:
