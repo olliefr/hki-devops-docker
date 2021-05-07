@@ -1,0 +1,199 @@
+~/ml.temp on ☁️ (europe-north1)
+❯ docker-compose up --build
+Creating network "mltemp_default" with the default driver
+Creating volume "mltemp_imgs" with default driver
+Creating volume "mltemp_data" with default driver
+Creating volume "mltemp_model" with default driver
+Building training
+[+] Building 239.5s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                                              0.2s
+ => => transferring dockerfile: 225B                                                                                              0.0s
+ => [internal] load .dockerignore                                                                                                 0.2s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/python:3.6.7-slim                                                              5.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                     0.0s
+ => [1/5] FROM docker.io/library/python:3.6.7-slim@sha256:abedac233d506b945b377f3846900b7cebb2f23e724226ee6a59032cb3039057       45.3s
+ => => resolve docker.io/library/python:3.6.7-slim@sha256:abedac233d506b945b377f3846900b7cebb2f23e724226ee6a59032cb3039057        0.1s
+ => => sha256:9b7641540adc94d0c37d8a99c75e10c6cb93f150f001eb4db4d4f75a4ad74315 1.37kB / 1.37kB                                    0.0s
+ => => sha256:ea57895cf3f905f857190bed034943e49d3c255a250677d3efd572e2cb572a26 6.60kB / 6.60kB                                    0.0s
+ => => sha256:abedac233d506b945b377f3846900b7cebb2f23e724226ee6a59032cb3039057 2.37kB / 2.37kB                                    0.0s
+ => => sha256:a5a6f2f73cd8abbdc55d0df0d8834f7262713e87d6c8800ea3851f103025e0f0 22.49MB / 22.49MB                                 40.2s
+ => => sha256:3a6fba0409825ce0c720161f7c30e12faad5f210bf1ebffa28df16ed112958a6 2.52MB / 2.52MB                                    7.6s
+ => => sha256:973ed4320c0c22954984035ec1be2a1930a90abdb06ea87e1dff35954bcf350c 22.37MB / 22.37MB                                 37.4s
+ => => sha256:2e4c0b09f6073f00e1d7542a3838c0e26de465dfa593fd750901eb61daa24785 241B / 241B                                        7.8s
+ => => sha256:c5f847ace1b006b29078e6eff48f2a870b3ae9ca0eacad6f3735f4b2483a1907 2.07MB / 2.07MB                                   11.6s
+ => => extracting sha256:a5a6f2f73cd8abbdc55d0df0d8834f7262713e87d6c8800ea3851f103025e0f0                                         0.9s
+ => => extracting sha256:3a6fba0409825ce0c720161f7c30e12faad5f210bf1ebffa28df16ed112958a6                                         0.1s
+ => => extracting sha256:973ed4320c0c22954984035ec1be2a1930a90abdb06ea87e1dff35954bcf350c                                         0.8s
+ => => extracting sha256:2e4c0b09f6073f00e1d7542a3838c0e26de465dfa593fd750901eb61daa24785                                         0.0s
+ => => extracting sha256:c5f847ace1b006b29078e6eff48f2a870b3ae9ca0eacad6f3735f4b2483a1907                                         0.2s
+ => [internal] load build context                                                                                                 0.3s
+ => => transferring context: 266.77kB                                                                                             0.1s
+ => [2/5] WORKDIR /src                                                                                                            0.9s
+ => [3/5] COPY . .                                                                                                                0.2s
+ => [4/5] RUN pip install --upgrade pip                                                                                          12.4s
+ => [5/5] RUN pip install --trusted-host pypi.python.org -r requirements.txt                                                    169.1s
+ => exporting to image                                                                                                            5.5s
+ => => exporting layers                                                                                                           5.4s
+ => => writing image sha256:e321bebaff2c1b190983d03a7a771b3e4bcf2532464a19d0aa937f0289f71d98                                      0.0s
+ => => naming to docker.io/library/training                                                                                       0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Successfully built e321bebaff2c1b190983d03a7a771b3e4bcf2532464a19d0aa937f0289f71d98
+Building backend
+[+] Building 164.8s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile                                                                              0.3s
+ => => transferring dockerfile: 223B                                                                                              0.0s
+ => [internal] load .dockerignore                                                                                                 0.3s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/python:3.6.7-slim                                                              2.6s
+ => [1/5] FROM docker.io/library/python:3.6.7-slim@sha256:abedac233d506b945b377f3846900b7cebb2f23e724226ee6a59032cb3039057        0.0s
+ => [internal] load build context                                                                                                 0.2s
+ => => transferring context: 47.81kB                                                                                              0.0s
+ => CACHED [2/5] WORKDIR /src                                                                                                     0.0s
+ => [3/5] COPY . .                                                                                                                0.3s
+ => [4/5] RUN pip install --upgrade pip                                                                                          22.6s
+ => [5/5] RUN pip install --trusted-host pypi.python.org -r requirements.txt                                                    131.4s
+ => exporting to image                                                                                                            7.2s
+ => => exporting layers                                                                                                           7.1s
+ => => writing image sha256:69467aa2c11ef96190ef9e797e642ba7a858fa7079930414b8c68551d2b7cf72                                      0.1s
+ => => naming to docker.io/library/backend                                                                                        0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Successfully built 69467aa2c11ef96190ef9e797e642ba7a858fa7079930414b8c68551d2b7cf72
+Building frontend
+[+] Building 419.3s (12/12) FINISHED
+ => [internal] load build definition from Dockerfile                                                                              0.3s
+ => => transferring dockerfile: 207B                                                                                              0.0s
+ => [internal] load .dockerignore                                                                                                 0.3s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/node:12.16.2                                                                   2.8s
+ => [auth] library/node:pull token for registry-1.docker.io                                                                       0.0s
+ => [1/6] FROM docker.io/library/node:12.16.2@sha256:0976c3ee45443edd77ad2c8105debafe4d444767dc1f9cd2efba8fe58c7718cb           324.6s
+ => => resolve docker.io/library/node:12.16.2@sha256:0976c3ee45443edd77ad2c8105debafe4d444767dc1f9cd2efba8fe58c7718cb             0.1s
+ => => sha256:e764fa94bbf75c3aeb124a6e0c2ed3cfe8d3c9e56bc07b5a0ae7990c0ac4dcc2 7.88kB / 7.88kB                                    0.0s
+ => => sha256:0976c3ee45443edd77ad2c8105debafe4d444767dc1f9cd2efba8fe58c7718cb 1.21kB / 1.21kB                                    0.0s
+ => => sha256:44d3b16983346c5f48b27de2f52301d8dca64698c2680764d77198d81d9d1dc8 2.21kB / 2.21kB                                    0.0s
+ => => sha256:e3fa264a7a881e244e7fd3420edda0d550ee3b26ed870f5c021d937497ffd602 10.80MB / 10.80MB                                 29.0s
+ => => sha256:a222a2af289fc1fe54c037f02e7651e0aead2f81f40cb2885786bfe57aed10a9 4.34MB / 4.34MB                                   14.3s
+ => => sha256:99760bc62448fbba69f6f0981d09bb4b7532e17362ecfb709141a7195d9b01d3 45.38MB / 45.38MB                                105.9s
+ => => sha256:c1f89293f045ce3c13f0d10aa189292713a213532b69efada74fe25d2d4db381 50.08MB / 50.08MB                                133.3s
+ => => sha256:115b6fc5ace19f10a939b9462204914b46f25e6d90a0d2cbd05f015b23c1e5b9 214.91MB / 214.91MB                              290.8s
+ => => extracting sha256:99760bc62448fbba69f6f0981d09bb4b7532e17362ecfb709141a7195d9b01d3                                         1.7s
+ => => sha256:9eb516295c249674ba14ab649fad42f2dd6ea1c67ad89ffc56e6bb3de0180944 4.17kB / 4.17kB                                  108.2s
+ => => sha256:be1dbde81db8ac31067b3499648704392c8049fdd04ff54a7eb48aee2ec4f2c1 23.75MB / 23.75MB                                157.4s
+ => => extracting sha256:e3fa264a7a881e244e7fd3420edda0d550ee3b26ed870f5c021d937497ffd602                                         0.3s
+ => => extracting sha256:a222a2af289fc1fe54c037f02e7651e0aead2f81f40cb2885786bfe57aed10a9                                         0.2s
+ => => extracting sha256:c1f89293f045ce3c13f0d10aa189292713a213532b69efada74fe25d2d4db381                                         2.1s
+ => => sha256:9d252c8352bcbd8e8693d2fb1c41b9676e6ef746a6662bfd7b9e2dab790fc8a1 2.39MB / 2.39MB                                  139.5s
+ => => sha256:90d3245f294d995033d5d59e4ff1fc8db0f156ed1c24210a34126fe2d0a118ff 295B / 295B                                      140.4s
+ => => extracting sha256:115b6fc5ace19f10a939b9462204914b46f25e6d90a0d2cbd05f015b23c1e5b9                                         7.1s
+ => => extracting sha256:9eb516295c249674ba14ab649fad42f2dd6ea1c67ad89ffc56e6bb3de0180944                                         0.1s
+ => => extracting sha256:be1dbde81db8ac31067b3499648704392c8049fdd04ff54a7eb48aee2ec4f2c1                                         1.1s
+ => => extracting sha256:9d252c8352bcbd8e8693d2fb1c41b9676e6ef746a6662bfd7b9e2dab790fc8a1                                         0.1s
+ => => extracting sha256:90d3245f294d995033d5d59e4ff1fc8db0f156ed1c24210a34126fe2d0a118ff                                         0.0s
+ => [internal] load build context                                                                                                 0.3s
+ => => transferring context: 4.24MB                                                                                               0.1s
+ => [2/6] WORKDIR /usr/src/app                                                                                                    8.6s
+ => [3/6] COPY . .                                                                                                                0.4s
+ => [4/6] RUN npm ci                                                                                                             49.4s
+ => [5/6] RUN npm run build                                                                                                      18.5s
+ => [6/6] RUN npm install -g serve                                                                                                5.9s
+ => exporting to image                                                                                                            5.9s
+ => => exporting layers                                                                                                           5.8s
+ => => writing image sha256:71045df2771be8e788db125ae7c524367ff5ff58b55b9dac13a543a307009f4b                                      0.0s
+ => => naming to docker.io/library/frontend                                                                                       0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Successfully built 71045df2771be8e788db125ae7c524367ff5ff58b55b9dac13a543a307009f4b
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Creating mltemp_training_1 ... done
+Creating mltemp_backend_1  ... done
+Creating mltemp_frontend_1 ... done
+Attaching to mltemp_training_1, mltemp_backend_1, mltemp_frontend_1
+frontend_1  | INFO: Accepting connections at http://localhost:3000
+training_1  | Using TensorFlow backend.
+backend_1   | Using TensorFlow backend.
+backend_1   | Backend starting
+backend_1   | No 'kurkkumopotin.sav' model in the model volume. Waiting for training service to provide one.
+training_1  | gathering cucumbers...
+training_1  | gathering mopeds...
+training_1  | Epoch 1/5
+training_1  | 2021-05-07 03:43:05.870893: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+training_1  | 2021-05-07 03:43:06.222725: W tensorflow/core/framework/allocator.cc:108] Allocation of 512000000 exceeds 10% of system memory.
+training_1  |
+training_1  | 128/787 [===>..........................] - ETA: 10s - loss: 0.7679 - acc: 0.53912021-05-07 03:43:07.894187: W tensorflow/core/framework/allocator.cc:108] Allocation of 512000000 exceeds 10% of system memory.
+training_1  |
+training_1  | 256/787 [========>.....................] - ETA: 7s - loss: 0.7853 - acc: 0.5977 2021-05-07 03:43:09.428070: W tensorflow/core/framework/allocator.cc:108] Allocation of 512000000 exceeds 10% of system memory.
+training_1  |
+training_1  | 384/787 [=============>................] - ETA: 5s - loss: 1.1875 - acc: 0.56252021-05-07 03:43:11.003303: W tensorflow/core/framework/allocator.cc:108] Allocation of 512000000 exceeds 10% of system memory.
+training_1  |
+training_1  | 512/787 [==================>...........] - ETA: 3s - loss: 1.0288 - acc: 0.61132021-05-07 03:43:12.658083: W tensorflow/core/framework/allocator.cc:108] Allocation of 512000000 exceeds 10% of system memory.
+training_1  |
+training_1  | 640/787 [=======================>......] - ETA: 1s - loss: 0.9540 - acc: 0.6422
+training_1  | 768/787 [============================>.] - ETA: 0s - loss: 0.9309 - acc: 0.6641
+training_1  | 787/787 [==============================] - 10s 13ms/step - loss: 0.9182 - acc: 0.6696
+training_1  | Epoch 2/5
+training_1  |
+training_1  | 128/787 [===>..........................] - ETA: 8s - loss: 0.4258 - acc: 0.7812
+training_1  | 256/787 [========>.....................] - ETA: 6s - loss: 0.4002 - acc: 0.8047
+training_1  | 384/787 [=============>................] - ETA: 5s - loss: 0.3953 - acc: 0.8281
+training_1  | 512/787 [==================>...........] - ETA: 3s - loss: 0.3545 - acc: 0.8496
+training_1  | 640/787 [=======================>......] - ETA: 1s - loss: 0.3425 - acc: 0.8578
+training_1  | 768/787 [============================>.] - ETA: 0s - loss: 0.3211 - acc: 0.8685
+training_1  | 787/787 [==============================] - 10s 13ms/step - loss: 0.3185 - acc: 0.8691
+training_1  | Epoch 3/5
+training_1  |
+training_1  | 128/787 [===>..........................] - ETA: 8s - loss: 0.3634 - acc: 0.8516
+training_1  | 256/787 [========>.....................] - ETA: 6s - loss: 0.2622 - acc: 0.8828
+training_1  | 384/787 [=============>................] - ETA: 5s - loss: 0.2635 - acc: 0.8906
+training_1  | 512/787 [==================>...........] - ETA: 3s - loss: 0.3393 - acc: 0.8633
+training_1  | 640/787 [=======================>......] - ETA: 1s - loss: 0.3354 - acc: 0.8656
+training_1  | 768/787 [============================>.] - ETA: 0s - loss: 0.3088 - acc: 0.8750
+training_1  | 787/787 [==============================] - 10s 12ms/step - loss: 0.3038 - acc: 0.8780
+training_1  | Epoch 4/5
+training_1  |
+training_1  | 128/787 [===>..........................] - ETA: 8s - loss: 0.1740 - acc: 0.9531
+training_1  | 256/787 [========>.....................] - ETA: 6s - loss: 0.1517 - acc: 0.9492
+training_1  | 384/787 [=============>................] - ETA: 4s - loss: 0.1446 - acc: 0.9531
+training_1  | 512/787 [==================>...........] - ETA: 3s - loss: 0.1374 - acc: 0.9570
+training_1  | 640/787 [=======================>......] - ETA: 1s - loss: 0.1462 - acc: 0.9484
+training_1  | 768/787 [============================>.] - ETA: 0s - loss: 0.1457 - acc: 0.9492
+training_1  | 787/787 [==============================] - 10s 12ms/step - loss: 0.1450 - acc: 0.9492
+training_1  | Epoch 5/5
+training_1  |
+training_1  | 128/787 [===>..........................] - ETA: 8s - loss: 0.2529 - acc: 0.9297
+training_1  | 256/787 [========>.....................] - ETA: 6s - loss: 0.2294 - acc: 0.9219
+training_1  | 384/787 [=============>................] - ETA: 5s - loss: 0.1960 - acc: 0.9401
+training_1  | 512/787 [==================>...........] - ETA: 3s - loss: 0.1860 - acc: 0.9355
+training_1  | 640/787 [=======================>......] - ETA: 1s - loss: 0.1801 - acc: 0.9375
+training_1  | 768/787 [============================>.] - ETA: 0s - loss: 0.1817 - acc: 0.9375
+training_1  | 787/787 [==============================] - 10s 13ms/step - loss: 0.1806 - acc: 0.9377
+training_1  |
+training_1  |  32/388 [=>............................] - ETA: 1s
+training_1  |  64/388 [===>..........................] - ETA: 1s
+training_1  |  96/388 [======>.......................] - ETA: 1s
+training_1  | 128/388 [========>.....................] - ETA: 1s
+training_1  | 160/388 [===========>..................] - ETA: 0s
+training_1  | 192/388 [=============>................] - ETA: 0s
+training_1  | 224/388 [================>.............] - ETA: 0s
+training_1  | 256/388 [==================>...........] - ETA: 0s
+training_1  | 288/388 [=====================>........] - ETA: 0s
+training_1  | 320/388 [=======================>......] - ETA: 0s
+training_1  | 352/388 [==========================>...] - ETA: 0s
+training_1  | 384/388 [============================>.] - ETA: 0s
+training_1  | 388/388 [==============================] - 2s 4ms/step
+mltemp_training_1 exited with code 0
+backend_1   | 2021-05-07 03:43:59.339221: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+backend_1   |  * Serving Flask app "app" (lazy loading)
+backend_1   |  * Environment: production
+backend_1   |    WARNING: Do not use the development server in a production environment.
+backend_1   |    Use a production WSGI server instead.
+backend_1   |  * Debug mode: on
+backend_1   |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+backend_1   |  * Restarting with stat
+backend_1   | 2021-05-07 03:44:01.296639: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+backend_1   | Using TensorFlow backend.
+backend_1   |  * Debugger is active!
+backend_1   |  * Debugger PIN: 479-809-060
+backend_1   | 172.21.0.1 - - [07/May/2021 03:45:14] "POST /kurkkuvaimopo HTTP/1.1" 200 -
